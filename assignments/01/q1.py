@@ -31,7 +31,11 @@ print(sess.run(out))
 ###############################################################################
 
 # YOUR CODE
-
+x = tf.random_uniform([], -1, 1,dtype=tf.float32)
+y = tf.random_uniform([], -1, 1,dtype=tf.float32)
+out = tf.case({tf.greater(x, y): lambda: tf.add(x, y),
+               tf.less(x, y): lambda: tf.subtract(x, y)},
+              default=tf.constant(0), exclusive=True)
 ###############################################################################
 # 1c: Create the tensor x of the value [[0, -2, -1], [0, 1, 2]] 
 # and y as a tensor of zeros with the same shape as x.
@@ -40,6 +44,9 @@ print(sess.run(out))
 ###############################################################################
 
 # YOUR CODE
+x = tf.constant([[0, -2, -1], [0, 1, 2]])
+y = tf.zeros_like(x)
+out = tf.equal(x, y)
 
 ###############################################################################
 # 1d: Create the tensor x of value 
@@ -55,6 +62,12 @@ print(sess.run(out))
 ###############################################################################
 
 # YOUR CODE
+x = tf.constant([29.05088806,  27.61298943,  31.19073486,  29.35532951,
+                 30.97266006,  26.67541885,  38.08450317,  20.74983215,
+                 34.94445419,  34.45999146,  29.06485367,  36.01657104,
+                 27.88236427,  20.56035233,  30.20379066,  29.51215172,
+                 33.71149445,  28.59134293,  36.05556488,  28.66994858])
+bool_mask = tf.where(tf.greater(x,30))
 
 ###############################################################################
 # 1e: Create a diagnoal 2-d tensor of size 6 x 6 with the diagonal values of 1,

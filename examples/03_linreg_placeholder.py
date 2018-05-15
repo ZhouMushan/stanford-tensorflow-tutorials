@@ -32,8 +32,8 @@ Y_predicted = w * X + b
 
 # Step 5: use the squared error as the loss function
 # you can use either mean squared error or Huber loss
-loss = tf.square(Y - Y_predicted, name='loss')
-# loss = utils.huber_loss(Y, Y_predicted)
+#loss = tf.square(Y - Y_predicted, name='loss')
+loss = utils.huber_loss(Y, Y_predicted)
 
 # Step 6: using gradient descent with learning rate of 0.001 to minimize loss
 optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.001).minimize(loss)
@@ -46,7 +46,7 @@ with tf.Session() as sess:
 	sess.run(tf.global_variables_initializer()) 
 	
 	# Step 8: train the model for 100 epochs
-	for i in range(100): 
+	for i in range(200):
 		total_loss = 0
 		for x, y in data:
 			# Session execute optimizer and fetch values of loss
