@@ -22,7 +22,7 @@ sess = tf.InteractiveSession()
 x = tf.random_uniform([])  # Empty array as shape creates a scalar.
 y = tf.random_uniform([])
 out = tf.cond(tf.greater(x, y), lambda: tf.add(x, y), lambda: tf.subtract(x, y))
-
+print(sess.run(out))
 ###############################################################################
 # 1b: Create two 0-d tensors x and y randomly selected from the range [-1, 1).
 # Return x + y if x < y, x - y if x > y, 0 otherwise.
@@ -34,7 +34,7 @@ y = tf.random_uniform([], -1, 1, dtype=tf.float32)
 out = tf.case({tf.less(x, y): lambda: tf.add(x, y), 
 			tf.greater(x, y): lambda: tf.subtract(x, y)}, 
 			default=lambda: tf.constant(0.0), exclusive=True)
-
+print(sess.run(out))
 
 ###############################################################################
 # 1c: Create the tensor x of the value [[0, -2, -1], [0, 1, 2]] 
@@ -46,7 +46,7 @@ out = tf.case({tf.less(x, y): lambda: tf.add(x, y),
 x = tf.constant([[0, -2, -1], [0, 1, 2]])
 y = tf.zeros_like(x)
 out = tf.equal(x, y)
-
+print(sess.run(out))
 ###############################################################################
 # 1d: Create the tensor x of value 
 # [29.05088806,  27.61298943,  31.19073486,  29.35532951,
@@ -67,7 +67,7 @@ x = tf.constant([29.05088806,  27.61298943,  31.19073486,  29.35532951,
 		        33.71149445,  28.59134293,  36.05556488,  28.66994858])
 indices = tf.where(x > 30)
 out = tf.gather(x, indices)
-
+print(sess.run(out))
 ###############################################################################
 # 1e: Create a diagnoal 2-d tensor of size 6 x 6 with the diagonal values of 1,
 # 2, ..., 6
@@ -76,7 +76,7 @@ out = tf.gather(x, indices)
 
 values = tf.range(1, 7)
 out = tf.diag(values)
-
+print(sess.run(out))
 ###############################################################################
 # 1f: Create a random 2-d tensor of size 10 x 10 from any distribution.
 # Calculate its determinant.
@@ -85,7 +85,7 @@ out = tf.diag(values)
 
 m = tf.random_normal([10, 10], mean=10, stddev=1)
 out = tf.matrix_determinant(m)
-
+print(sess.run(out))
 ###############################################################################
 # 1g: Create tensor x with value [5, 2, 3, 5, 10, 6, 2, 3, 4, 2, 1, 1, 0, 9].
 # Return the unique elements in x
